@@ -19,7 +19,7 @@ app.use(cors({
   credentials: true,
   origin:
   ['https://localhost:3001', 'https://localhost:3000',
-    'https://mesto89.students.nomoredomains.xyz', 'https://api.mesto89.students.nomoredomains.xyz'],
+    'https://movies89api.nomorepartiesxyz.ru', 'http://movies89api.nomorepartiesxyz.ru'],
 }));
 
 app.use(helmet());
