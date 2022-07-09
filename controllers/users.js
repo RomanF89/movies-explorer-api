@@ -27,11 +27,11 @@ const createUser = (req, res, next) => {
       if (err.name === 'ValidationError') {
         const fields = Object.keys(err.errors).join(', ');
         next(new BadRequestError(`${fields} are not correct`));
-      }
-      if (err.code === 11000) {
+      } else if (err.code === 11000) {
         next(new ConflictingRequestError('This email already exists'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -100,8 +100,11 @@ const updateProfile = (req, res, next) => {
       if (err.name === 'ValidationError') {
         const fields = Object.keys(err.errors).join(', ');
         next(new BadRequestError(`${fields} are not correct`));
+      } else if (err.code === 11000) {
+        next(new ConflictingRequestError('This email already exists'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 

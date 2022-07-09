@@ -29,7 +29,7 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -43,7 +43,7 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailerLink: trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -60,8 +60,9 @@ const createMovie = (req, res, next) => {
       if (err.name === 'ValidationError') {
         const fields = Object.keys(err.errors).join(', ');
         next(new BadRequestError(`${fields} are not correct`));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -85,8 +86,9 @@ const deleteMovie = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new BadRequestError('Card id is not correct'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 

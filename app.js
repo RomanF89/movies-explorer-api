@@ -9,7 +9,10 @@ const errorsHandler = require('./middlewares/errorsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/routes');
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+const { rateLimiter } = require('./configuration/rateLimiter');
+
+const { DB_CONNECT = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
+mongoose.connect(DB_CONNECT);
 
 const app = express();
 
@@ -19,8 +22,11 @@ app.use(cors({
   credentials: true,
   origin:
   ['https://localhost:3001', 'https://localhost:3000',
-    'https://movies89api.nomorepartiesxyz.ru', 'http://movies89api.nomorepartiesxyz.ru'],
+    'https://movies89api.nomorepartiesxyz.ru', 'http://movies89api.nomorepartiesxyz.ru',
+  ],
 }));
+
+app.use(rateLimiter);
 
 app.use(helmet());
 
