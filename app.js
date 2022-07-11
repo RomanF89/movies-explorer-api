@@ -26,6 +26,8 @@ app.use(cors({
   ],
 }));
 
+app.use(requestLogger);
+
 app.use(rateLimiter);
 
 app.use(helmet());
@@ -37,8 +39,6 @@ app.use(cookieParser());
 app.listen(PORT, () => {
   console.log('server has been started');
 });
-
-app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
