@@ -18,6 +18,10 @@ router.post('/signup', signupValidation, createUser);
 
 router.post('/signin', signinValidation, login);
 
+router.use((req, res, next) => {
+  next(new NotFoundError("Sorry can't find that!"));
+});
+
 router.use(authorization);
 
 router.post('/signout', (req, res) => {
@@ -27,9 +31,5 @@ router.post('/signout', (req, res) => {
 router.use('/users', userRouter);
 
 router.use('/movies', movieRouter);
-
-router.use((req, res, next) => {
-  next(new NotFoundError("Sorry can't find that!"));
-});
 
 module.exports = router;
