@@ -21,7 +21,7 @@ const { PORT = 3000 } = process.env;
 app.use(cors({
   credentials: true,
   origin:
-  ['https://localhost:3001', 'https://localhost:3000',
+  ['https://localhost:3001', 'https://localhost:3000', 'http://localhost:3001', 'http://localhost:3000',
     'https://movies89api.nomorepartiesxyz.ru', 'http://movies89api.nomorepartiesxyz.ru',
   ],
 }));
