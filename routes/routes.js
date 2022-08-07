@@ -19,8 +19,8 @@ router.post('/signup', signupValidation, createUser);
 router.post('/signin', signinValidation, login);
 
 router.use((req, res, next) => {
-  next(new NotFoundError("Sorry can't find that!"));
   res.status(404).send({ message: `${req.originalUrl} is not exist` });
+  next(new NotFoundError("Sorry can't find that!"));
 });
 
 // router.use(authorization);
