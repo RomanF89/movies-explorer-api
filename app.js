@@ -23,6 +23,7 @@ app.use(cors({
   origin:
   ['https://localhost:3001', 'https://localhost:3000', 'http://localhost:3001', 'http://localhost:3000',
     'https://movies89api.nomorepartiesxyz.ru', 'http://movies89api.nomorepartiesxyz.ru',
+    'https://movies89api.nomorepartiesxyz.ru/api', 'http://movies89api.nomorepartiesxyz.ru/api',
   ],
 }));
 
