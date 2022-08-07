@@ -23,7 +23,7 @@ router.use((req, res, next) => {
   next(new NotFoundError("Sorry can't find that!"));
 });
 
-// router.use(authorization);
+router.use(authorization);
 
 router.post('/signout', (req, res) => {
   res.clearCookie('jwt').send({ message: 'Выход' });
